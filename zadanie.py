@@ -7,7 +7,7 @@ import iteracjaprosta, iteracjaseidela
 from typing import List
 
 class Zadanie:
-    def __init__(self, n = 1300, M = 4, N = 22):
+    def __init__(self, n = 1111, M = 4, N = 22):
         """Konstruktor okreslajacy parametry eksperymentu"""
         self.n = n                          # maksymalny rozmiar macierzy
         self.M = M                          # liczba pomiarow
@@ -19,32 +19,30 @@ class Zadanie:
         """Metoda mierzaca czas rozwiazywania problemu wybrana metoda
             k - rozmiar macierzy"""
 
-        # uzupełnij metodę mierz_czas w pliku zadanie.py tak, by wykonywała 
-        # ona po M iteracji algorytmu, który masz zbadać – jej działanie ma 
-        # być analogiczne do metody mierz_czas klasy Sortowania (możesz od 
-        # razu tak ją skonstruować, by wewnątrz pojawiła się instrukcja 
-        # warunkowa, która pozwoli Ci wykorzystywać obie metody, które 
-        # masz porównać w zadaniu 2) (1 punkt)
-
         czas = 0.0
         macierzA = uklad.Uklad(wymiar = k)
         
-        # tworzymy petle, w ktorej bedziemy mierzyc czas rozwiazywania
-        # ukladu n rownan self.pomiary razy
-        
-        pomiary = 0
-        while pomiary < self.M:
-            
-            macierzAprosta = iteracjaprosta.IteracjaProsta(macierzA)
-            
-            if(macierzAprosta.przygotuj() == 0):
-                continue
-            
-            stoper = time.time()
-            macierzAprosta.iteruj_roznica(self, 10e-1, 0, wyswietlaj = 0, X0 = None)
-            czas += time.time() - stoper
+        if metoda == 1:
+            pomiary = 0
+            while pomiary < self.M:
+                macierzA.losuj_uklad()
+                macierzAprosta = iteracjaprosta.IteracjaProsta(macierzA)
+                stoper = time.time()
+                if(macierzAprosta.przygotuj() == 1):
+                    macierzAprosta.iteruj_roznica(eps = 1e-10, norma = 0, wyswietlaj = 0, X0 = None)
+                    czas += time.time() - stoper
+                    pomiary += 1
 
-            pomiary += 1
+        if metoda == 2:
+            pomiary = 0
+            while pomiary < self.M:
+                macierzA.losuj_uklad()
+                macierzASeidela = iteracjaseidela.IteracjaSeidela(macierzA)
+                stoper = time.time()
+                if(macierzASeidela.przygotuj() == 1):
+                    macierzASeidela.iteruj_roznica(eps = 1e-10, norma = 0, wyswietlaj = 0, X0 = None)
+                    czas += time.time() - stoper
+                    pomiary += 1
         
         return czas/self.M
 

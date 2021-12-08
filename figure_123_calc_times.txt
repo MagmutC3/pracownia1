@@ -1,0 +1,10 @@
+prosta
+1111 0.9156865477561951
+Zlozonosc obliczeniowa algorytmu: 1.5277541945347966
+
+Seidela
+1111 0.6363136768341064
+Zlozonosc obliczeniowa algorytmu: 1.9679229573076376
+
+N        prosta          Seidela
+1111     0.91800159      0.67174637

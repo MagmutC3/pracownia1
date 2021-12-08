@@ -56,7 +56,56 @@ def testy(typ):
         # wykorzystać w tym celu sekcję 4 pliku pracownia1.py (1 punkt)
 
         # tworzymy obiekt klasy Uklad
-        ukladA = uklad.Uklad(wymiar = 1300)
+        ukladA = uklad.Uklad(wymiar = 1111)
+
+        # losujemy odpowiedni uklad rownan
+        ukladA.losuj_uklad()
+        
+        # tworzymy obiekt klasy odpowiadajacej metodzie
+        iterProstaA = iteracjaprosta.IteracjaProsta(ukladA)
+        
+        czas = 0.0
+        # uruchamiamy stoper
+        stoper = time.time()
+
+        # wywolujemy odpowiednie metody
+        if iterProstaA.przygotuj() == 1:
+            iterProstaA.iteruj_roznica(eps = 1e-10, norma = ukladA.norma_wektora(typ = 0), wyswietlaj = 1, X0 = None)
+        
+        # zatrzymujemy stoper
+        czas += time.time() - stoper
+
+        # wyswietlamy czas rozwiazywania ukladu
+        print(f"Czas rozwiazywania ukladu metoda iteracji prostej: {czas}")
+
+    elif typ == 5:
+        """Miejsce na rozwiazanie Zadania 1"""
+        # tworzymy obiekt klasy Zadanie i podajemy odpowiednie parametry
+        zad1 = zadanie.Zadanie()
+        # badamy zlozonosc obliczeniowa wybranej metody
+        zad1.badaj_zlozonosc(
+            metoda = 2,
+            opis = "Metoda iteracji Seidela"
+        )
+    elif typ == 6:
+        # porownujemy metody
+        # tworzymy obiekt klasy Zadanie i podajemy odpowiednie parametry
+        zad2 = zadanie.Zadanie()
+        # badamy zlozonosc obliczeniowa wybranej metody
+        zad2.porownaj_metody(
+            nazwa_metody1 = "Metoda iteracji prostej",
+            nazwa_metody2 = "Metoda iteracji Seidela"
+        )
+    elif typ == 7:
+        """Miejsce na rozwiazanie - przygotowanie"""
+
+        # wykonaj kilka testów próbnych dla danej metody, by ustalić maksymalny 
+        # rozmiar macierzy n (by obliczenia nie trwały zbyt długo – dla macierzy 
+        # o największym rozmiarze czas powinien być poniżej 1 sekundy) – możesz 
+        # wykorzystać w tym celu sekcję 4 pliku pracownia1.py (1 punkt)
+
+        # tworzymy obiekt klasy Uklad
+        ukladA = uklad.Uklad(wymiar = 1111)
 
         # losujemy odpowiedni uklad rownan
         ukladA.losuj_uklad()
@@ -69,61 +118,13 @@ def testy(typ):
 
         # wywolujemy odpowiednie metody
         if iterSeidelaA.przygotuj() == 1:
-            iterSeidelaA.iteruj_roznica(eps = 10e-1, norma = ukladA.norma_wektora(typ = 0), wyswietlaj = 1, X0 = None)
+            iterSeidelaA.iteruj_roznica(eps = 1e-10, norma = ukladA.norma_wektora(typ = 0), wyswietlaj = 1, X0 = None)
         
         # zatrzymujemy stoper
         czas = time.time() - stoper
 
         # wyswietlamy czas rozwiazywania ukladu
         print(f"Czas rozwiazywania ukladu metoda iteracji seidela: {czas}")
-    elif typ == 5:
-        """Miejsce na rozwiazanie Zadania 1"""
-        # tworzymy obiekt klasy Zadanie i podajemy odpowiednie parametry
-        zad1 = zadanie.Zadanie()
-        # badamy zlozonosc obliczeniowa wybranej metody
-        zad1.badaj_zlozonosc(
-            metoda = 1,
-            opis = "Metoda iteracji prostej"
-        )
-    elif typ == 6:
-        # porownujemy metody
-        # tworzymy obiekt klasy Zadanie i podajemy odpowiednie parametry
-        zad2 = zadanie.Zadanie()
-        # badamy zlozonosc obliczeniowa wybranej metody
-        zad2.porownaj_metody(
-            nazwa_metody1 = "Metoda ...",
-            nazwa_metody2 = "Metoda ..."
-        )
-    elif typ == 7:
-        """Miejsce na rozwiazanie - przygotowanie"""
-
-        # wykonaj kilka testów próbnych dla danej metody, by ustalić maksymalny 
-        # rozmiar macierzy n (by obliczenia nie trwały zbyt długo – dla macierzy 
-        # o największym rozmiarze czas powinien być poniżej 1 sekundy) – możesz 
-        # wykorzystać w tym celu sekcję 4 pliku pracownia1.py (1 punkt)
-
-        # tworzymy obiekt klasy Uklad
-        ukladA = uklad.Uklad(wymiar = 1300)
-
-        # losujemy odpowiedni uklad rownan
-        ukladA.losuj_uklad()
-        
-        # tworzymy obiekt klasy odpowiadajacej metodzie
-        iterProstaA = iteracjaprosta.IteracjaProsta(ukladA)
-        
-        # uruchamiamy stoper
-        stoper = time.time()
-
-        # wywolujemy odpowiednie metody
-        if iterProstaA.przygotuj() == 1:
-            iterProstaA.iteruj_roznica(eps = 10e-1, norma = ukladA.norma_wektora(typ = 0), wyswietlaj = 1, X0 = None)
-        
-        # zatrzymujemy stoper
-        czas = time.time() - stoper
-
-        # wyswietlamy czas rozwiazywania ukladu
-        print(f"Czas rozwiazywania ukladu metoda iteracji prostej: {czas}")
         
 if __name__ == '__main__':
-    testy(5)
-    
+    testy(6)
