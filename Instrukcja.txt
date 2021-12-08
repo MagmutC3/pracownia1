@@ -7,8 +7,8 @@ Oblicz:
 > N = 18 + C + D  // 18 + 2 + 2    = 22
 
 W dalszej części używane będą oznaczenia:
-(6) - metoda iteracji Seidela
 (4) - metoda iteracji prostej
+(6) - metoda iteracji Seidela
 
 
 

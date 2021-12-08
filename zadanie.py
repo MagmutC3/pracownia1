@@ -14,7 +14,7 @@ class Zadanie:
         self.N = N                          # liczba rozmiarow
         self.rozmiary = []                  # lista rozmiarow ukladow
         self.czasy: List[List] = [[], []]   # lista czasow rozwiazywania
-        
+
     def mierz_czas(self, metoda, k):
         """Metoda mierzaca czas rozwiazywania problemu wybrana metoda
             k - rozmiar macierzy"""
@@ -27,20 +27,27 @@ class Zadanie:
         # masz porównać w zadaniu 2) (1 punkt)
 
         czas = 0.0
-        
-        # tworzymy obiekt klasy Uklad
         macierzA = uklad.Uklad(wymiar = k)
         
         # tworzymy petle, w ktorej bedziemy mierzyc czas rozwiazywania
         # ukladu n rownan self.pomiary razy
-        for i in range(self.M):
-            # dokonujemy 4 pomiarow na rozmiar chyba?
-            # 22 rozmiary mierzymy ja nie wiem
-            pass
+        
+        pomiary = 0
+        while pomiary < self.M:
+            
+            macierzAprosta = iteracjaprosta.IteracjaProsta(macierzA)
+            
+            if(macierzAprosta.przygotuj() == 0):
+                continue
+            
+            stoper = time.time()
+            macierzAprosta.iteruj_roznica(self, 10e-1, 0, wyswietlaj = 0, X0 = None)
+            czas += time.time() - stoper
 
+            pomiary += 1
         
         return czas/self.M
-    
+
     def badaj_zlozonosc(self, metoda, opis):
         # okreslamy krok zmiany rozmiaru ukladu
         krok = self.n / self.N

@@ -83,7 +83,7 @@ def testy(typ):
         # badamy zlozonosc obliczeniowa wybranej metody
         zad1.badaj_zlozonosc(
             metoda = 1,
-            opis = "Metoda ..."
+            opis = "Metoda iteracji prostej"
         )
     elif typ == 6:
         # porownujemy metody
@@ -123,10 +123,7 @@ def testy(typ):
 
         # wyswietlamy czas rozwiazywania ukladu
         print(f"Czas rozwiazywania ukladu metoda iteracji prostej: {czas}")
-
-    
         
 if __name__ == '__main__':
-    testy(4)
-    testy(7)
+    testy(5)
     
